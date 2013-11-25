@@ -1,0 +1,109 @@
+Linux Basic Commands
+=================================
+
+ls : List directory contents
+
+ll : list with details (owner, group, premissions)
+
+chmod : change permissions of a file
+Example: 
+	- Make file read/write to owner, read-only to other users
+	  R W - R - - R - -
+	  1 1 0 1 0 0 1 0 0
+	  6     4     4
+	  
+	> chmod 644 /home/user/sth.txt
+	
+	- Make read/write/executable by everyone
+	  R W X R W X R W X
+	  1 1 1 1 1 1 1 1 1
+	  7     7     7
+	> chmod 777 filename
+	
+	- Owner: RWX (7), group: R-X (5), other; R-X (5)
+	(most common permission)
+	> chmod 755 filename
+	(used for executable files)
+	
+	- Recursively change permissiona
+	> chmod -hR 755 foldername
+	
+chown : Change the owner of a file
+	- Must execute this command as the owner of the file
+	> chown user:group filename
+	
+	> chown heme:heme filename
+	
+	- Recursively change the permissions of a directory (child files and folders too)
+	> chown -R heme:heme filename
+	
+pwd : Print current directory
+	> pwd
+	/home/rage
+
+cat : Display the contents of a file
+	> cat filename
+
+head : print first few lines of a file
+	> head filename
+	- print first 100 lines
+	> head -n 100 filename
+
+tail : print last few lines of a file
+	> tail filename
+	> tail -n 100 filename
+
+	- Follow a file as it changes
+	> tail -f filename
+	(used for viewing log files on console)
+
+touch : create an empty file
+	> touch filename
+
+
+Linux shellstuff
+====================================
+environment variables:
+	set a variable:
+	> export VAR1=/home/rage/dir1
+
+	use a variable:
+	prepend a dollar to the variable name e.g. $VAR1
+
+	e.g. delete files inside VAR1(/home/rage/dir1)
+	> rm -r $VAR1/*
+
+
+Process management
+=====================================
+ps : List processes
+	> ps aux
+		Displays all active processes
+		(first two columns are user and process ID)
+
+	> ps aux | grep java
+		Displays all processes with "java" mentioned in the command
+
+kill : kill a process
+	> kill -9 PID
+	(PID = process ID , can be viewed thru ps axu)
+
+top : View process list with CPU/memory usage
+
+File transfer
+========================================
+scp : remote file transfer
+	> scp <source> <destination>
+	OR, for recursive:
+	> scp -r <source> <destination>
+
+	e.g
+	> scp /local_folder/file.txt user@192.168.21.18:/home/jboss/file.txt
+	(local to remote copy)
+
+	> scp user@192.168.21.18:/remote_folder/remote_file /local/folder/local_file
+
+	> scp -r user@remote-machine:/remote_folder /local_folder/.
+
+
+
