@@ -5,6 +5,8 @@ ls : List directory contents
 
 ll : list with details (owner, group, premissions)
 
+
+
 chmod : change permissions of a file
 Example: 
 	- Make file read/write to owner, read-only to other users
